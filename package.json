@@ -1,0 +1,24 @@
+{
+  "name": "chatty",
+  "version": "1.0.0",
+  "description": "An attempt at a chatbot for UNC",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lindsaycarbonell/chatty.git"
+  },
+  "author": "Lindsay Carbonell and Katherine Wheeler Boyd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lindsaycarbonell/chatty/issues"
+  },
+  "homepage": "https://github.com/lindsaycarbonell/chatty#readme",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "textrazor": "^2.1.0"
+  }
+}
