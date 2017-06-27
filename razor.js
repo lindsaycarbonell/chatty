@@ -3,11 +3,6 @@ const textRazor = new TextRazor('98d2b4160bce259e9e5ede577635f209f4acd81d5ca8a36
 const content = 'Have the Wilmington city leaders considered building a minor league baseball stadium on the Convention Ctr property?';
 const options = { extractors: 'entities' };
 
-//entities are tags
-//entities[0].entityEnglishId
-
-// entities, topics, words, phrases,
-// dependency-trees, relations, entailments, senses, spelling
 
 textRazor.exec(content, options)
   .then(res => parseResults(res))
