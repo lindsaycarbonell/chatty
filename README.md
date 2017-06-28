@@ -25,3 +25,9 @@ In which we build a kind of functioning fancy chatbot
 
 ## Helpful Links
 - [Use Google Sheets As A Reporting Tool](https://codelabs.developers.google.com/codelabs/sheets-api/#1)
+- [Prototyping: Chatfuel + Gomix + QnAMaker](https://stanfy.com/blog/quick-chatbot-prototyping/)
+
+
+### Lindsay's Next Steps
+- Continue through Google Sheets As A Reporting Tool starting [here](https://codelabs.developers.google.com/codelabs/sheets-api/#6)
+-
