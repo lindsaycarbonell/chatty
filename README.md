@@ -30,4 +30,3 @@ In which we build a kind of functioning fancy chatbot
 
 ### Lindsay's Next Steps
 - Continue through Google Sheets As A Reporting Tool starting [here](https://codelabs.developers.google.com/codelabs/sheets-api/#6)
--

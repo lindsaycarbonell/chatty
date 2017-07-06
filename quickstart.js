@@ -2,6 +2,7 @@ var fs = require('fs');
 var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
+var GoogleSpreadsheet = require('google-spreadsheet');
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/sheets.googleapis.com-nodejs-quickstart.json
@@ -18,7 +19,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   }
   // Authorize a client with the loaded credentials, then call the
   // Google Sheets API.
-  authorize(JSON.parse(content), listMajors);
+  authorize(JSON.parse(content), doSheetThings);
 });
 
 /**
@@ -36,6 +37,7 @@ function authorize(credentials, callback) {
   var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
   // Check if we have previously stored a token.
+// getNewToken(oauth2Client, callback);
   fs.readFile(TOKEN_PATH, function(err, token) {
     if (err) {
       getNewToken(oauth2Client, callback);
@@ -99,12 +101,30 @@ function storeToken(token) {
  * Print the names and majors of students in a sample spreadsheet:
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  */
-function listMajors(auth) {
+function doSheetThings(auth) {
+
   var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.append({
+    auth: auth,
+    spreadsheetId: '1tpeaZ8QkOpEWeaHI79BH-MguuJzV_S_MpIrqAodCwcg',
+    range: 'questions',
+    valueInputOption: 'USER_ENTERED',
+    resource: {
+      values: [
+        ["0", "09/06/2008", "does this work?", "well, i, guess, we, will, see"]
+      ]
+    }
+  }, function(err, response){
+    if (err){
+      console.log(err);
+    } else {
+      console.log(response);
+    }
+  });
   sheets.spreadsheets.values.get({
     auth: auth,
-    spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-    range: 'Class Data!A2:E',
+    spreadsheetId: '1tpeaZ8QkOpEWeaHI79BH-MguuJzV_S_MpIrqAodCwcg',
+    range: 'questions!A2:D',
   }, function(err, response) {
     if (err) {
       console.log('The API returned an error: ' + err);
@@ -114,12 +134,23 @@ function listMajors(auth) {
     if (rows.length == 0) {
       console.log('No data found.');
     } else {
-      console.log('Name, Major:');
       for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
         // Print columns A and E, which correspond to indices 0 and 4.
-        console.log('%s, %s', row[0], row[4]);
+        // console.log('%s, %s', row[0], row[3]);
       }
     }
   });
+}
+
+const worksheet_id = '1tpeaZ8QkOpEWeaHI79BH-MguuJzV_S_MpIrqAodCwcg';
+
+var doc = new GoogleSpreadsheet(worksheet_id);
+var sheet;
+
+const new_row = {
+  'id': 0,
+  'date_asked': '09/06/2008',
+  'question': 'does this work?',
+  'keywords': 'well, i, guess, we, will, see'
 }

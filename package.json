@@ -22,6 +22,7 @@
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
     "google-auth-library": "^0.10.0",
+    "google-spreadsheet": "^2.0.4",
     "googleapis": "^19.0.0",
     "textrazor": "^2.1.0"
   }
