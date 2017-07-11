@@ -97,10 +97,6 @@ function storeToken(token) {
   console.log('Token stored to ' + TOKEN_PATH);
 }
 
-/**
- * Print the names and majors of students in a sample spreadsheet:
- * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
- */
 function doSheetThings(auth) {
 
   var sheets = google.sheets('v4');
@@ -111,7 +107,7 @@ function doSheetThings(auth) {
     valueInputOption: 'USER_ENTERED',
     resource: {
       values: [
-        ["0", "09/06/2008", "does this work?", "well, i, guess, we, will, see"]
+        ["09/06/2008", "Lindsay Carbonell", "does this work?", "well, i, guess, we, will, see"]
       ]
     }
   }, function(err, response){
@@ -121,36 +117,4 @@ function doSheetThings(auth) {
       console.log(response);
     }
   });
-  sheets.spreadsheets.values.get({
-    auth: auth,
-    spreadsheetId: '1tpeaZ8QkOpEWeaHI79BH-MguuJzV_S_MpIrqAodCwcg',
-    range: 'questions!A2:D',
-  }, function(err, response) {
-    if (err) {
-      console.log('The API returned an error: ' + err);
-      return;
-    }
-    var rows = response.values;
-    if (rows.length == 0) {
-      console.log('No data found.');
-    } else {
-      for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        // Print columns A and E, which correspond to indices 0 and 4.
-        // console.log('%s, %s', row[0], row[3]);
-      }
-    }
-  });
-}
-
-const worksheet_id = '1tpeaZ8QkOpEWeaHI79BH-MguuJzV_S_MpIrqAodCwcg';
-
-var doc = new GoogleSpreadsheet(worksheet_id);
-var sheet;
-
-const new_row = {
-  'id': 0,
-  'date_asked': '09/06/2008',
-  'question': 'does this work?',
-  'keywords': 'well, i, guess, we, will, see'
 }
